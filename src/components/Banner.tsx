@@ -6,8 +6,8 @@ import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 
 export default function Banner() {
-    const covers = ['/img/cover.jpg', '/img/cover2.jpg', '/img/cover3.jpg']
-    const [index, setIndex] = useState(0)
+    // const covers = ['/img/cover.jpg', '/img/cover2.jpg', '/img/cover3.jpg']
+    // const [index, setIndex] = useState(0)
     const router = useRouter()
     const { data: session } = useSession()
     console.log(session?.user.token)

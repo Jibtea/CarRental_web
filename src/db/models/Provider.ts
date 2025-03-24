@@ -46,5 +46,5 @@ ProviderSchema.virtual('booking', {
 }
 );
 
-const Provider = mongoose.models.Car || mongoose.model("Provider", ProviderSchema);
+const Provider = mongoose.model.rentalCarProvider || mongoose.model("Provider", ProviderSchema);
 export default Provider

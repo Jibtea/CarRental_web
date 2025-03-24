@@ -18,27 +18,35 @@ export default function Reservations() {
     }*/
 
     const urlParams = useSearchParams();
-    const uid = urlParams.get('id');
-    const name = urlParams.get('name');
+    // const uid = urlParams.get('id');
+    // const name = urlParams.get('name');
 
     const dispatch = useDispatch<AppDispatch>();
 
     const makeReservation = () => {
-        if (uid && name && pickupDate && dropoffDate) {
+        if (pickupDate && dropoffDate && selectedOption != "...") {
+            if (pickupDate > dropoffDate) {
+                alert("please select correct pic-up drop-off date");
+                return;
+            }
             const item: BookingItem = {
-                _id: '',//session.user._id,
-                user: '',//session.user.name,
-                pickupDate: dayjs(pickupDate).format("YYYY/MM/DD"),
-                dropoffDate: dayjs(dropoffDate).format("YYYY/MM/DD"),
-                rentalCarProvider: name,
-                createdAt: dayjs().format("YYYY/MM/DD"),
+                _id: "1234",//session.user._id,
+                user: "JOy",//session.user.name,
+                pickupDate: dayjs(pickupDate).format("MM/DD/YYYY"),
+                dropoffDate: dayjs(dropoffDate).format("MM/DD/YYYY"),
+                rentalCarProvider: selectedOption,
+                createdAt: dayjs().format("MM/DD/YYYY"),
             };
             dispatch(addReservation(item));
+            alert("Reservation complete!");
+        } else {
+            alert("Please select both pickup and dropoff dates.");
         }
     };
 
+
     const [options, setOptions] = useState<{ _id: number, name: string }[]>([]);
-    const [selectedOption, setSelectedOption] = useState<string>("");
+    const [selectedOption, setSelectedOption] = useState<string>("...");
     const [pickupDate, setPickupDate] = useState<Dayjs | null>(null);
     const [dropoffDate, setDropOffDate] = useState<Dayjs | null>(null);
 
@@ -89,9 +97,13 @@ export default function Reservations() {
             </div>
             <button
                 className="block rounded-md bg-sky-600 hover:bg-indigo-600 px-3 py-2 shadow-sm text-white"
-                onClick={makeReservation}
+                onClick={() => {
+                    makeReservation();
+                    // alert("make resercation complete");
+                }
+                }
             >
-                Make reservation with this provider
+                Make reservation with {selectedOption} provider
             </button>
         </main >
     );

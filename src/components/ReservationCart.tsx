@@ -20,10 +20,11 @@ export default function ReservationCart() {
             {
                 Array.isArray(providerItems) && providerItems.length > 0 ? (
                     providerItems.map((BookingItem) => (
-                        <div className="bg-slate-200 rounded px-5 mx-5 py-2 my-2" key={BookingItem.bid}>
+                        <div className="bg-slate-200 rounded px-5 mx-5 py-2 my-2" key={BookingItem._id}>
                             <div className="text-xl">{BookingItem.user}</div>
-                            <div className="text-sm">Pick-Up {BookingItem.pickupDate}</div>
-                            <div className="text-sm">Drop-off {BookingItem.dropoffDate}</div>
+                            <div className="text-l">provider: {BookingItem.rentalCarProvider}</div>
+                            <div className="text-sm">Pick-Up: {BookingItem.pickupDate}</div>
+                            <div className="text-sm">Drop-off: {BookingItem.dropoffDate}</div>
                             <div className="text-md">
                                 Duration: {calculateDuration(BookingItem.pickupDate, BookingItem.dropoffDate)} days
                             </div>
