@@ -7,7 +7,7 @@ export default async function ProviderCatalog({ providerJson }: { providerJson: 
     const providerJsonReady = await providerJson
     return (
         <>
-            Explore {providerJsonReady.count} 25 car provider in our catalog
+            Explore {providerJsonReady.count} car provider in our catalog
             <div style={{
                 margin: "20px", display: "flex",
                 flexDirection: "row", alignContent: "space-around",
