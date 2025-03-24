@@ -15,18 +15,19 @@ export function TravelCard(){
     )
 
     return(
-        <div className='w-[80%] shadow-lg mx-[10%] my-10 p-2 rounded-lg bg-gray-200
-        flex flex-row'>
+        <div className='w-[80%] shadow-lg mx-[10%] my-10 p-2 rounded-lg bg-gray-200 flex flex-row'>
             <VlogPlayer isPlaying={playing} vdoSrc="/video/ThailandNatural.mp4"></VlogPlayer>
-            <div className="m-5" >
-                Thailand Natural ({pointerPosition.x}, {pointerPosition.y} )
-                <button className="block rounded-md bg-sky-600 hover:bg-indigo-600 px-3 py-2
-                text-white shadow-sm"
+            <div className="m-5 font-serif">
+                <h1 className="mb-3 text-xl font-bold leading-relaxed tracking-wider">I kicked my mom out of the house</h1>
+                <button className="w-32 h-10 text-md opacity-90 hover:shadow-inner hover:shadow-blue-800 
+                        hover:bg-blue-500 bg-blue-600 shadow-lg text-white py-2 px-4 
+                        rounded-xl font-serif flex items-center justify-center relative group mt-2"
                 onClick={()=> setPlaying(!playing)}>
                     {playing? 'Pause':'Play'}
                 </button>
-                <Rating className='w-full h-[10%]' value={(rating==undefined)? 0:rating}
-                onChange={(e,newValue) => {if(newValue!=null) setRating(newValue)}}/>
+                <p>6733032421 Jiratchaya Kunyaphila</p>
+                <p>6733032421 Rachata Boonmemechai</p>
+                <p>6733218921 Ratima Klabprasit</p>
             </div>
         </div>
     )
