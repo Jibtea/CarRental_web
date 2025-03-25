@@ -88,7 +88,7 @@ export default function Reservation() {
     console.log("Booking Data:", bookingData); // 🛠 Debug ข้อมูลก่อนส่ง
 
     try {
-      const response = await fetch('http://localhost:5000/RentalC01/booking', {
+      const response = await fetch('https://ikickedmymom.vercel.app/RentalC01/booking', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -125,13 +125,8 @@ export default function Reservation() {
     <main className="w-[100%] flex flex-col items-center space-y-4">
       <div className="flex-flex-col items-center text-xl font-medium">New Reservation</div>
       <div className="flex-flex-col items-center text-xl font-medium">Provider</div>
-      <select
-        id="dynamic-dropdown"
-        value={selectedOption}
-        onChange={
-          handleChange
-        }
-      >
+      <select id="dynamic-dropdown" value={selectedOption} onChange={handleChange}>
+        <option value="">Select a provider</option>
         {options.length > 0 ? (
           options.map((provider) => (
             <option key={provider._id} value={JSON.stringify({ id: provider._id, name: provider.name })}>
@@ -142,6 +137,13 @@ export default function Reservation() {
           <option>Loading...</option>
         )}
       </select>
+
+      {/* แสดงชื่อของ provider ที่เลือก */}
+      {selectedOption && (
+        <div className="mt-2 text-lg font-semibold text-blue-600">
+          Selected Provider: {selectOptionName}
+        </div>
+      )}
       <div className="w-fit space-y-2">
         <div className="text-md text-left text-gray-600">Pick-Up Date</div>
         <DateReserve onDateChange={(value: Dayjs) => { setPickupDate(value) }} />

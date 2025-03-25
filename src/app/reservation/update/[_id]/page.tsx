@@ -50,7 +50,7 @@ export default function updatePage() {
 
   const fetchBookingDetails = async (id: string) => {
     try {
-      const response = await fetch(`http://localhost:5000/RentalC01/booking/${id}`, {
+      const response = await fetch(`https://ikickedmymom.vercel.app/RentalC01/booking/${id}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -100,7 +100,7 @@ export default function updatePage() {
       createdAt: dayjs().toISOString(),
     };
     try {
-      const response = await fetch(`http://localhost:5000/RentalC01/booking/${_id}`, {
+      const response = await fetch(`https://ikickedmymom.vercel.app/RentalC01/booking/${_id}`, {
         method: 'PUT', // หรือ 'PATCH' ขึ้นอยู่กับ API ของคุณ
         headers: {
           'Content-Type': 'application/json',
@@ -136,7 +136,7 @@ export default function updatePage() {
       <h1>Update Reservation</h1>
       {bookingDetails ? (
         <div>
-          {user?.data.role === 'admin' ? <p>User: {bookingDetails.user}</p> : ''}
+          {user?.data && user?.data.role === 'admin' ? <p>User: {bookingDetails.user}</p> : ''}
           <h2>Your Reservation Id: {bookingDetails._id}</h2> {/* จะไม่มีข้อผิดพลาดหาก bookingDetails ถูกโหลดแล้ว */}
           <p>provider: {bookingDetails.rentalCarProvider.name}</p>
           <p>Pick-Up Date: {new Date(bookingDetails.pickupDate).toLocaleDateString()}</p>
@@ -146,14 +146,8 @@ export default function updatePage() {
 
           <div>
             <div>
-              <label>Rental Car Provider:</label>
-              <select
-                id="dynamic-dropdown"
-                value={selectedOption}
-                onChange={
-                  handleChange
-                }
-              >
+              <select id="dynamic-dropdown" value={selectedOption} onChange={handleChange}>
+                <option value="">Select a provider</option>
                 {options.length > 0 ? (
                   options.map((provider) => (
                     <option key={provider._id} value={JSON.stringify({ id: provider._id, name: provider.name })}>
@@ -164,11 +158,13 @@ export default function updatePage() {
                   <option>Loading...</option>
                 )}
               </select>
-              {/* <input
-                type="text"
-                value={selectedOption?.name}
-                onChange={(e) => setSelectedOption({ ...selectedOption, name: e.target.value })}
-              /> */}
+
+              {/* แสดงชื่อของ provider ที่เลือก */}
+              {selectedOption && (
+                <div className="mt-2 text-lg font-semibold text-blue-600">
+                  Selected Provider: {selectOptionName}
+                </div>
+              )}
             </div>
             <div className="w-fit space-y-2">
               <div className="text-md text-left text-gray-600">Pick-Up Date</div>

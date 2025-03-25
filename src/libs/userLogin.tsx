@@ -1,5 +1,5 @@
 export default async function userLogIn(userEmail: string, userPassword: string) {
-    const response = await fetch("http://localhost:5000/RentalC01/auth/login", {
+    const response = await fetch("https://ikickedmymom.vercel.app/RentalC01/auth/login", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

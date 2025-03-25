@@ -7,13 +7,14 @@ export default async function ProviderDetailPage({ params }: { params: { pid: st
 
   return (
     <main className="text-center p-5">
-      <h1 className="text-lg font medium">{ProviderDetail.data.name}</h1>
+      <h1 className="text-lg font medium text-left">{ProviderDetail.data.name}</h1>
       <div className="flex flex-row my-5">
         {/* <Image src={ProviderDetail.data.picture}
                     alt='Car Image'
                     width={0} height={0} sizes="100vw"
                     className="rounded-lg w-[30%] bg-black"/> */}
-        <div className='text-md mx-5 text-left'>{ProviderDetail.data.address}
+        <div className="text-left">
+          <div className='text-md mx-5'>Address: {ProviderDetail.data.address}</div>
           <div className='text-md mx-5'>District: {ProviderDetail.data.district}</div>
           <div className='text-md mx-5'>Province: {ProviderDetail.data.province}</div>
           <div className='text-md mx-5'>Postal Code: {ProviderDetail.data.postalcode}</div>

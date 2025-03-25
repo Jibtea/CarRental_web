@@ -13,9 +13,7 @@ export default function Providers() {
       <Suspense fallback={<p>Loading...<LinearProgress /></p>}>
         <ProviderCatalog providerJson={Providers} />
       </Suspense>
-      {/* <hr className="my-10" />
-      <h1 className='text-xl font-medium'>TRY Client-Side</h1> */}
-      {/* <ProviderPanel /> */}
+
     </main>
   );
 }
